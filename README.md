@@ -1,5 +1,7 @@
 # vertx-spring-aware
-Allows you to write verticles as a spring components
+Allows you to write verticles as a spring components.
+
+You can find examples [here](https://github.com/Invizible/vertx-spring-aware-examples).
 
 # How to use
 Add Vertx into spring context and BeanPostProcessor like so:
