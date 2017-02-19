@@ -4,21 +4,21 @@ Allows you to write verticles as a spring components.
 You can find examples [here](https://github.com/Invizible/vertx-spring-aware-examples).
 
 # How to use
-Add Vertx into spring context and BeanPostProcessor like so:
+Import one of Spring Configuration classes (VertxConfiguration or ClusteredVertxConfiguration) in your Context
 
 ```java
-  @Bean
-  public Vertx vertx() {
-    return Vertx.vertx();
+@Import(VertxConfiguration.class) // 1. Import Vertx configuration
+@SpringBootApplication
+public class SpringVertxApplication {
+
+  public static void main(String[] args) {
+    SpringApplication.run(SpringVertxApplication.class, args); // 2. Run app (will create Spring context)
   }
 
-  @Bean
-  public VerticleDeployBeanPostProcessor verticleDeployBeanPostProcessor() {
-    return new VerticleDeployBeanPostProcessor();
-  }
+}
 ```
 
-Put @Verticle annotation on your Verticle:
+Put @Verticle annotation on your Verticles:
 
 ```java
 @Verticle
@@ -38,4 +38,6 @@ public class ServerVerticle extends AbstractVerticle {
 }
 ```
 
-Now you can easily use spring beans in your verticles. 
+That's it. Now all your Verticles will be deployed automatically by VertxConfiguration and dependency injection will be available.
+
+See examples project for more use cases.
