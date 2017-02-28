@@ -39,6 +39,8 @@ public class VerticleDeployer {
     log.info("Starting deploying found verticles...");
 
     for (String verticleBeanName : verticleBeanNames) {
+      log.info(String.format("Deploying %s...", verticleBeanName));
+      
       vertx.deployVerticle(springVerticleFactory.prefix() + ":" + verticleBeanName, getDeploymentOptions(verticleBeanName), result -> {
         if (result.succeeded()) {
           log.info(String.format("Verticle '%s' has been deployed successfully", verticleBeanName));
